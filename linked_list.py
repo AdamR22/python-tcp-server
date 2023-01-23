@@ -50,6 +50,7 @@ class LinkedList:
 
             # If client was the first one to connect to server
             if node_to_be_removed.next != None:
+                self.update_ranks(node_to_be_removed)
                 self.head = node_to_be_removed.next
                 del(node_to_be_removed)
 
