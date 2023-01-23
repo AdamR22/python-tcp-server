@@ -2,7 +2,7 @@ class LinkedList:
 
     def __init__(self) -> None:
         self.head: LinkedList.Node = None
-        self.total_rank: int = 0
+        self.total_rank: int = 0 # Helps in assigning rank to nodes/clients. Also shows total number of connected nodes/clients
     
     class Node:
         def __init__(self, client_name) -> None:
@@ -43,10 +43,12 @@ class LinkedList:
         node_to_be_removed: LinkedList.Node = self.find_node_using_rank(rank)
 
         if node_to_be_removed is self.head:
+            # If client is the only one connected to server
             if node_to_be_removed.next == None:
                 self.head = None
                 del(node_to_be_removed)
 
+            # If client was the first one to connect to server
             if node_to_be_removed.next != None:
                 self.head = node_to_be_removed.next
                 del(node_to_be_removed)
@@ -73,7 +75,11 @@ class LinkedList:
         next_node.prev = prev_node
         prev_node.next = next_node
 
+        self.update_ranks(next_node)
+
         del(node_to_be_removed)
+
+        self.total_rank -= 1
 
     
     def traverse_linked_list(self) -> None:
@@ -84,28 +90,7 @@ class LinkedList:
 
             current_node = current_node.next
 
-    def update_ranks(self) -> None:
-        pass
-
-
-
-if __name__ == "__main__":
-    node_one = LinkedList.Node("Client one")
-    node_two = LinkedList.Node("Client two")
-    node_three = LinkedList.Node("Client three")
-    node_four = LinkedList.Node("Client four")
-
-    linked_list = LinkedList()
-
-    linked_list.insert_node(node_one)
-    linked_list.insert_node(node_two)
-    linked_list.insert_node(node_three)
-    linked_list.insert_node(node_four)
-
-    linked_list.traverse_linked_list()
-
-    print()
-
-    linked_list.remove_node(1)
-
-    linked_list.traverse_linked_list()
+    def update_ranks(self, node: Node) -> None:
+        while node != None:
+            node.client_rank -= 1
+            node = node.next
