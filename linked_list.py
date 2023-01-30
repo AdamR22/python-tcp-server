@@ -1,13 +1,12 @@
 from socket import socket
 
 class LinkedList:
-
-
     def __init__(self) -> None:
         self.ENCODING_DECODING_FORMAT: str = "utf-8"
         self.head: LinkedList.Node = None
         self.total_rank: int = 0 # Helps in assigning rank to nodes/clients. Also shows total number of connected nodes/clients
     
+
     class Node:
         def __init__(self, client_name, client_socket: socket) -> None:
             self.client_socket: socket = client_socket
@@ -34,6 +33,7 @@ class LinkedList:
         current_node.next = node
         node.prev = current_node
 
+
     def find_node_using_name(self, name: str) -> Node:
         if self.head.client_name == name:
             return self.head
@@ -44,7 +44,8 @@ class LinkedList:
             current_node = current_node.next
 
         return current_node
-    
+
+
     def remove_node(self, name: str) -> None:
         node_to_be_removed: LinkedList.Node = self.find_node_using_name(name)
 
@@ -55,7 +56,7 @@ class LinkedList:
                 del(node_to_be_removed)
 
             # If client was the first one to connect to server
-            if node_to_be_removed.next != None:
+            elif node_to_be_removed.next != None:
                 self.update_ranks(node_to_be_removed)
                 self.head = node_to_be_removed.next
                 del(node_to_be_removed)
@@ -89,20 +90,12 @@ class LinkedList:
         self.total_rank -= 1
 
     
-    def broadcast_messages(self, message: str) -> None:
+    def broadcast_messages(self, message: bytes) -> None:
         current_node: LinkedList.Node = self.head
         while current_node != None:
             current_node.client_socket.send(message)
             current_node = current_node.next
 
-    
-    def traverse_linked_list(self) -> None:
-        current_node: LinkedList.Node = self.head
-
-        while current_node != None:
-            print(f"Name: {current_node.client_name}: Rank: {current_node.client_rank}")
-
-            current_node = current_node.next
 
     def update_ranks(self, node: Node) -> None:
         while node != None:
