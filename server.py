@@ -1,5 +1,5 @@
 from socket import gethostbyname, gethostname, socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
-import threading
+import threading, sys
 
 from linked_list import LinkedList
 
@@ -7,6 +7,7 @@ PORT: int = 2781
 HOST_IP: str = gethostbyname(gethostname()) # Get IP address of host computer name
 ENCODING_DECODING_FORMAT: str = "utf-8"
 COMMAND_SIZE: int = 2048 # Client and server can send and receive a maximum of 2KB of data at a time
+NUM_OF_CLIENTS_SERVER_CAN_HANDLE: int = int(sys.argv[1])
 
 client_list: LinkedList = LinkedList()
 
@@ -15,7 +16,8 @@ server: socket = socket(AF_INET, SOCK_STREAM)
 server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 
 server.bind((HOST_IP, PORT))
-server.listen()
+server.listen(NUM_OF_CLIENTS_SERVER_CAN_HANDLE)
+
 print(f"Server listening on port: {PORT}")
 
 
