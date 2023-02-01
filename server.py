@@ -6,7 +6,7 @@ from linked_list import LinkedList
 PORT: int = 2781
 HOST_IP: str = gethostbyname(gethostname()) # Get IP address of host computer name
 ENCODING_DECODING_FORMAT: str = "utf-8"
-COMMAND_SIZE: int = 2048 # Client and server can send and receive a maximum of 2KB of data at a time
+COMMAND_SIZE: int = 2048 # Server can send and receive a maximum of 2KB of data at a time
 NUM_OF_CLIENTS_SERVER_CAN_HANDLE: int = int(sys.argv[1])
 
 client_list: LinkedList = LinkedList()
@@ -36,7 +36,7 @@ def handle_client_connection(conn: socket, client_name: str):
                 break
 
             if client_command:
-                client_list.broadcast_messages(client_command.encode(ENCODING_DECODING_FORMAT))
+                client_list.broadcast_messages(client_command, client_name)
 
         except Exception as e:
             print(e.__str__)

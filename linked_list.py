@@ -90,10 +90,22 @@ class LinkedList:
         self.total_rank -= 1
 
     
-    def broadcast_messages(self, message: bytes) -> None:
+    def broadcast_messages(self, message: str, client_name: str) -> None:
         current_node: LinkedList.Node = self.head
+        client_node: LinkedList.Node = self.find_node_using_name(client_name)
+
         while current_node != None:
-            current_node.client_socket.send(message)
+            if current_node == client_node:
+                current_node.client_socket.send(f"{message} command sent.".encode(self.ENCODING_DECODING_FORMAT))
+            else:
+                # Execute commands of higher ranked clients
+                if current_node.client_rank > client_node.client_rank:
+                    current_node.client_socket.send(f"Executing {message} command.".encode(self.ENCODING_DECODING_FORMAT))
+
+                # Show message to higher ranked server if command from lower ranked server
+                if current_node.client_rank < client_node.client_rank:
+                    current_node.client_socket.send(f"Cannot execute command from client of a lower rank".encode(self.ENCODING_DECODING_FORMAT))
+
             current_node = current_node.next
 
 
