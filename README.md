@@ -27,7 +27,7 @@ Some of the issues facing the project are;
   A client may also 'hang' after the enter key is pressed. To resolve this, send a command from another client.
 
 - 'Lost commands':
-  Sending multiple commands in succession results in only the first one being sent.
+  Sending multiple commands in rapid succession results in only the first one being sent.
 
 ## Running the project
 -----------------------
