@@ -1,7 +1,7 @@
 # python-tcp-server
 
 ## Description
-----------------
+
 A multithreaded TCP server that accepts N amount of clients.
 
 The server accepts commands from a client, and uses a linked list to broadcast said command to other connected clients.
@@ -13,11 +13,11 @@ Whenever a client disconnects, the remaining clients' ranks are reassigned where
 0 is the highest rank assigned to a client, N is the lowest ranked assigned to a client.
 
 ## Technologies Used
-----------------------
+
 - [Python 3.10.6](https://www.python.org/downloads/)
 
 ## Challenges Faced
-----------------------
+
 Some of the issues facing the project are;
 
 - Buffering:
@@ -30,7 +30,7 @@ Some of the issues facing the project are;
   Sending multiple commands in rapid succession results in only the first one being sent.
 
 ## Running the project
------------------------
+
 - Clone this repo to a directory of your choice
 - Open up a terminal and cd to the project directory
 - To run the server;
@@ -43,7 +43,7 @@ Some of the issues facing the project are;
   ```
 
 ## Using the project
-----------------------
+
 Start up the server first before starting up the clients.
 
 #### The server
@@ -59,16 +59,16 @@ Upon starting up the client, you should come across something similar to the ima
 After writing a command, you should receive a message afterwards informing you that the command was sent.
 ![Client after sending command](./images/client%20after%20sending%20command.png)
 
-If the client is receiving a command from a higher ranked server, you should receive a message saying the command is being executed and a second later, another message saying the command was executed.
+If the client is receiving a command from a higher ranked client, you should receive a message saying the command is being executed and a second later, another message saying the command was executed.
 ![Client after executing command](./images/client%20after%20executing%20command.png)
 
-if the client is receving a command from a lower ranked server, you should receive a message saying the client cannot execute a command from a lower ranked server.
-![Client after receiving command from lower ranked server](./images/client%20after%20receiving%20command%20from%20lower%20ranked%20client.png)
+if the client is receving a command from a lower ranked client, you should receive a message saying the client cannot execute a command from a lower ranked server.
+![Client after receiving command from lower ranked client](./images/client%20after%20receiving%20command%20from%20client%20of%20lower%20rank.png)
 
 To disconnect the client from the server, type exit
 
 ## Credits
---------------
+
 The following resources were used in the creation of this project.
 - [Tech with Tim: Python Socket Programming Tutorial](https://www.youtube.com/watch?v=3QiPPX-KeSc)
 - [Python documentation](https://docs.python.org/3/)

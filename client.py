@@ -50,7 +50,7 @@ def run_client() -> None:
                     continue
 
                 if client_that_sent_command_class == "Junior":
-                    print("Cannot execute command from a lower ranked server.")
+                    print("Cannot execute command from a lower ranked client.")
                     continue
 
                 print(command_through_server)
