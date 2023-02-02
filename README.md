@@ -62,7 +62,7 @@ After writing a command, you should receive a message afterwards informing you t
 If the client is receiving a command from a higher ranked client, you should receive a message saying the command is being executed and a second later, another message saying the command was executed.
 ![Client after executing command](./images/client%20after%20executing%20command.png)
 
-if the client is receving a command from a lower ranked client, you should receive a message saying the client cannot execute a command from a lower ranked server.
+if the client is receving a command from a lower ranked client, you should receive a message saying the client cannot execute a command from a lower ranked client.
 ![Client after receiving command from lower ranked client](./images/client%20after%20receiving%20command%20from%20client%20of%20lower%20rank.png)
 
 To disconnect the client from the server, type exit
