@@ -11,9 +11,8 @@ NUM_OF_CLIENTS_SERVER_CAN_HANDLE: int = int(sys.argv[1])
 
 client_list: LinkedList = LinkedList()
 
-# Create socket that accepts IPv4 addresses and receives and transmits streams of data
-server: socket = socket(AF_INET, SOCK_STREAM)
-server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+server: socket = socket(AF_INET, SOCK_STREAM) # Create socket that accepts IPv4 addresses and receives and transmits streams of data
+server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1) # Use same address when server is shutdown and restarts again in a short span of time
 
 server.bind((HOST_IP, PORT))
 server.listen(NUM_OF_CLIENTS_SERVER_CAN_HANDLE)
@@ -22,6 +21,13 @@ print(f"Server listening on port: {PORT}")
 
 
 def handle_client_connection(conn: socket, client_name: str):
+
+    """
+    conn: client socket
+    client_name: client generated username
+
+    Facilitates communication between clients.
+    """
 
     client_node: LinkedList.Node = LinkedList.Node(client_name, conn)
     client_list.insert_node(client_node)
@@ -46,6 +52,14 @@ def handle_client_connection(conn: socket, client_name: str):
 
 
 def run() -> None:
+
+    """
+    Runs server for an indefinate period of time.
+
+    Accepts a client connection.
+    Creates a new thread that will be incharge of handling client using handle_client_connection function
+    """
+
     while True:
         client_conn, _ = server.accept() 
         client_name = client_conn.recv(COMMAND_SIZE).decode(ENCODING_DECODING_FORMAT) # Receive one time client name

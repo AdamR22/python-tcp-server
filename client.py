@@ -14,6 +14,7 @@ def random_string_generator() -> str:
     """
     return ''.join(random.choice(string.ascii_letters) for i in range(10))
 
+
 CLIENT_NAME: str = random_string_generator()
 
 client: socket = socket(AF_INET, SOCK_STREAM)
@@ -23,6 +24,11 @@ client.send(CLIENT_NAME.encode(ENCODING_DECODING_FORMAT))
 
 
 def run_client() -> None:
+    """
+    Runs client for an indefinate amount of time.
+    Program ends when user types exit in client or uses a keyboard interupt (ctrl + C)
+    """
+
     while True:
         data = input(f"{CLIENT_NAME}$ ")
         client.send(data.encode(ENCODING_DECODING_FORMAT))
@@ -34,16 +40,24 @@ def run_client() -> None:
             if not command_through_server:
                 continue
             else:
+                # shows if command comes from a senior or junior ranked server
+                client_that_sent_command_class: str = command_through_server.split(":")[0].strip() 
+
+                if client_that_sent_command_class == "Senior":
+                    print("Executing command")
+                    time.sleep(1) # Simulate pausing due to executing command
+                    print("Command Executed.")
+                    continue
+
+                if client_that_sent_command_class == "Junior":
+                    print("Cannot execute command from a lower ranked server.")
+                    continue
+
                 print(command_through_server)
-
-                if "Executing" in command_through_server:
-                    time.sleep(1) # Simulate executing command
-                    print("Command executed")
-
-                    continue 
         else:
             client.close()
             break
+        
         
 if __name__ == "__main__":
     run_client()
