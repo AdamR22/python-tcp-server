@@ -18,15 +18,15 @@ Whenever a client disconnects, the remaining clients' ranks are reassigned where
 
 ## Challenges Faced
 ----------------------
-Some of the problems currently faced by the project are;
+Some of the issues facing the project are;
 
-- Buffering
+- Buffering:
   When more that one client is connected, the command isn't immediately received by the sendee(s). 
   A hack to overcome this is to press the enter key in the sendee(s) client(s).
 
-  A client may also 'hang' after the enter key is pressed. To resolve this, send a command from aother client.
+  A client may also 'hang' after the enter key is pressed. To resolve this, send a command from another client.
 
-- 'Lost commands'
+- 'Lost commands':
   Sending multiple commands in succession results in only the first one being sent.
 
 ## Running the project
@@ -35,7 +35,7 @@ Some of the problems currently faced by the project are;
 - Open up a terminal and cd to the project directory
 - To run the server;
   ```bash
-  python3 server.py num_of_clients_supported
+  python3 server.py num_of_clients_to_support
   ```
 - To run a client, open up a terminal, cd to the project directory and type
   ```bash
@@ -56,7 +56,7 @@ To close the server, press ctrl+C. Ensure all clients are disconnected before do
 Upon starting up the client, you should come across something similar to the image below.
 ![Started up client](./images/client.png)
 
-After writing a command, you should receive a message afterwars informing you that the command was sent.
+After writing a command, you should receive a message afterwards informing you that the command was sent.
 ![Client after sending command](./images/client%20after%20sending%20command.png)
 
 If the client is receiving a command from a higher ranked server, you should receive a message saying the command is being executed and a second later, another message saying the command was executed.
