@@ -30,7 +30,7 @@ Some of the issues facing the project are;
   Sending multiple commands in rapid succession results in only the first one being sent.
 
 ## Running the project
-
+- Download and install [Python 3.10.6](https://www.python.org/downloads/)
 - Clone this repo to a directory of your choice
 - Open up a terminal and cd to the project directory
 - To run the server;
