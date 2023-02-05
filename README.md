@@ -22,7 +22,7 @@ Some of the issues facing the project are;
 
 - Buffering:
   When more that one client is connected, the command isn't immediately received by the sendee(s). 
-  A hack to overcome this is to press the enter key in the sendee(s) client(s).
+  A hack to go around this is to press the enter key in the sendee(s) client(s).
 
   A client may also 'hang' after the enter key is pressed. To resolve this, send a command from another client.
 

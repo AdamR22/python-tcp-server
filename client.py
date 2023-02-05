@@ -30,18 +30,18 @@ def run_client() -> None:
     """
 
     while True:
-        data = input(f"{CLIENT_NAME}$ ")
-        client.send(data.encode(ENCODING_DECODING_FORMAT))
+        command = input(f"{CLIENT_NAME}$ ")
+        client.send(command.encode(ENCODING_DECODING_FORMAT))
 
         # Commmand echoed by server from another client
-        command_through_server: str = client.recv(COMMAND_SIZE).decode(ENCODING_DECODING_FORMAT)
+        received_command: str = client.recv(COMMAND_SIZE).decode(ENCODING_DECODING_FORMAT)
 
-        if not command_through_server or command_through_server != "exit":
-            if not command_through_server:
+        if not received_command or received_command != "exit":
+            if not received_command:
                 continue
             else:
                 # shows if command comes from a senior or junior ranked server
-                client_that_sent_command_class: str = command_through_server.split(":")[0].strip() 
+                client_that_sent_command_class: str = received_command.split(":")[0].strip() 
 
                 if client_that_sent_command_class == "Senior":
                     print("Executing command")
@@ -53,7 +53,7 @@ def run_client() -> None:
                     print("Cannot execute command from a lower ranked client.")
                     continue
 
-                print(command_through_server)
+                print(received_command)
         else:
             client.close()
             break
