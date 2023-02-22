@@ -69,7 +69,7 @@ To disconnect the client from the server, type exit
 
 ## Credits
 
-The following resources were used as learning tools in the creation of this project.
+The following resources were used as learning tools during the creation of this project.
 - [Tech with Tim: Python Socket Programming Tutorial](https://www.youtube.com/watch?v=3QiPPX-KeSc)
 - [Python documentation](https://docs.python.org/3/)
 
